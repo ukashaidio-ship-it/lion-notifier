@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lion Notifier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b0b0f;
+      color: white;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .image-box {
+      flex: 1;
+      background: #111;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .image-box img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card {
+      flex: 1;
+      background: #111;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(255,0,255,0.25);
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .option {
+      padding: 15px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .option:hover, .active {
+      border-color: #ff00cc;
+      background: rgba(255,0,204,0.1);
+    }
+
+    .buy-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #ff00cc, #3333ff);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .payments {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #aaa;
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #222;
+      color: white;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="image-box">
+      <img src="https://via.placeholder.com/500x300" alt="Lion Notifier">
+    </div>
+
+    <div class="card">
+      <h1>Lion Notifier</h1>
+      <div class="price" id="price">$5.00</div>
+
+      <div class="option active" onclick="selectOption(this, 5)">
+        Lion Notifier Key (1 Day) - $5
+      </div>
+      <div class="option" onclick="selectOption(this, 3)">
+        Lion Notifier (3 Hours) - $3
+      </div>
+
+      <a id="buyLink" href="litecoin:LQaLnig2KfEmkNeFSvnH3tq9sJKPKNEHp2">
+        <button class="buy-btn">Pay with LTC</button>
+      </a>
+
+      <div class="payments">
+        Send LTC to:<br>
+        <code id="wallet">LQaLnig2KfEmkNeFSvnH3tq9sJKPKNEHp2</code>
+      </div>
+
+      <button class="copy-btn" onclick="copyWallet()">Copy Address</button>
+
+    </div>
+
+  </div>
+
+  <script>
+    function selectOption(el, price) {
+      document.querySelectorAll('.option').forEach(o => o.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('price').innerText = "$" + price + ".00";
+    }
+
+    function copyWallet() {
+      const text = document.getElementById('wallet').innerText;
+      navigator.clipboard.writeText(text);
+      alert("Wallet copied!");
+    }
+  </script>
+
+</body>
+</html>
